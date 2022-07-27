@@ -1,0 +1,6 @@
+﻿Tuple ID,PID,Category,Price,Brand,Color,Quality
+p1,1,Laptop,999,Vaio,Silver,0.7
+p2,2,Laptop,529,Asus,Black,0.65
+p3,3,Laptop,599,HP,Silver,0.5
+p4,4,DSLR Camera,549,Canon,Black,0.75
+p5,5,Sci Fi eBooks,15.99,Fantasy Press,Blue,0.4

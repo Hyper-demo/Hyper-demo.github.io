@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html>
+
+
+<head>
+
+    <link rel="stylesheet" href="what_if.css">
+
+    <script src="https://pagecdn.io/lib/ace/1.4.5/ace.js" integrity="sha256-5Xkhn3k/1rbXB+Q/DX/2RuAtaB4dRRyQvMs83prFjpM=" crossorigin="anonymous"></script>
+
+</head>
+
+
+
+
+<body>
+
+
+
+<div class="container">
+
+    <!-- TOP LEFT -->
+    <div class="top_banner">
+
+        <select class="button-4" name="table" id="database_dropdown">
+            <option value="Amazon Product">Amazon Product</option>
+            <option value="Adult Income">Adult Income</option>
+        </select>
+
+        <div style="display: inline; float: right;">
+            <button class="button-4" role="button">Base Tables</button>
+        </div>
+
+        <div class="tab">
+            <button class="tablinks" onclick="openCity(event, 'What-If')">What-If</button>
+            <button class="tablinks" onclick="openCity(event, 'How-To')">How-To</button>
+        </div>
+
+        <!-- HELP TIPS -->
+        <div style="z-index: 1000;">
+            <div class="help-tip" id="help-tip-whatif" style="top: 60px; left: 180px;">
+                <p>This is the inline help tip for what-if!</p>
+            </div>
+        </div>
+
+        <div style="z-index: 1000;">
+            <div class="help-tip" id="help-tip-use" style="top: 150px; left: 10px;">
+                <p>This is the inline help tip for use!</p>
+            </div>
+        </div>
+
+        <div style="z-index: 1000;">
+            <div class="help-tip" id="help-tip-output" style="top: 452px; left: 10px;">
+                <p>This is the inline help tip for output!</p>
+            </div>
+        </div>
+
+        <div style="z-index: 1000;">
+            <div class="help-tip" id="help-tip-update" style="top: 615px; left: 10px;">
+                <p>This is the inline help tip for update!</p>
+            </div>
+        </div>
+
+        <div style="display: inline; float: right; margin-top: 10px;">
+            <button class="button-4" role="button" style="background-color: rgb(104, 213, 80);">RUN</button>
+        </div>
+          
+    </div>
+
+    <!-- TOP RIGHT -->
+    <div class="top_banner">
+
+        <div class="tab" style="margin-top: 32px;">
+            <button class="tablinks" onclick="openCity(event, 'Overall')">Overall</button>
+            <button class="tablinks" onclick="openCity(event, 'Vary Updates')">Vary Updates</button>
+        </div>
+
+        <!-- HELP TIPS -->
+        <div style="z-index: 1000;">
+            <div class="help-tip" id="help-tip-overall" style="top: 60px; left: 866px;">
+                <p>This is the inline help tip for overall!</p>
+            </div>
+        </div>
+
+    </div>
+  
+    <!-- INPUT GRID MIDDLE LEFT -->
+    <div class="input_grid">
+        <!-- USE ROW -->
+        <div class="span-row-2">
+            <button class="button-4" role="button" disabled style="color:#EDEFF2: #929090;">USE</button>
+        </div>
+        
+        <div class="span-col-5">
+            <select class="button-4" name="table" id="table-dropdown">
+                <option value="product">Custom</option>
+                <option value="review">Review</option>
+                <option value="rel_view">Product</option>
+            </select>
+            <div style="display: inline;">
+                <input class="button-4" type="text" id="relview" name="relview" value="AS RelevantView" disabled
+                style="background-color: rgba(216, 216, 216, 0.548); width: 165px">
+            </div>
+            <!-- <div class="inline-text" style="display: inline;"> </div> -->
+        </div>
+        <div class="span-col-5"> 
+            <div id="editor_USE">SELECT T1.PID, T1.Category,
+T1.Price, T1.Brand, T1.Color, T1.Quality
+AVG(Sentiment) AS Senti, AVG(T2.Rating) AS Rtng
+FROM Product AS T1, Review AS T2
+WHERE T1.PID = T2.PID
+GROUP BY T1.PID, T1.Category,
+T1.Price, T1.Brand, T1.Color, T1.Quality
+            </div>
+                        
+            <script>
+                var editor_USE = ace.edit("editor_USE");
+                editor_USE.setTheme("ace/theme/xcode"); 
+                // cobalt, dawn, solarized_light, xcode
+                editor_USE.session.setMode("ace/mode/sql");
+                editor_USE.setOptions({
+                    // fontFamily: "tahoma",
+                    fontSize: "12pt"
+                });
+            </script>
+    
+            <div style="width: 100px; height: 50px;">
+                <br>
+                <button class="button-4" role="button" style="background-color: rgba(130, 192, 128, 0.548);">RUN RELEVANT VIEW</button>
+            </div>
+    
+    
+        </div>
+        <!-- OUTPUT ROW -->
+        <div>
+            <button class="button-4" role="button" disabled style="color:#EDEFF2: #929090;">OUTPUT</button>
+        </div>
+        <div class="span-col-5">
+            <select class="button-4" name="output_aggr" id="output_aggr">
+                <option value="count">AVG</option>
+                <option value="sum">SUM</option>
+                <option value="avg">COUNT</option>
+            </select>
+            <div style="display: inline;">
+                <select class="button-4" name="output_aggr" id="output_aggr">
+                    <option value="product">POST(Rtng)</option>
+                    <option value="review">POST(Brand)</option>
+                    <option value="rel_view">POST(Senti)</option>
+                    <option value="rel_view">POST(Price)</option>
+                </select>
+            </div>
+        </div>  
+        <!-- FOR ROW --> 
+        <div>
+        </div> 
+        <div>
+            <button class="button-4" role="button">+ FOR</button>
+        </div>
+        <div class="span-col-4">
+            <div id="editor_FOR">PRE(Brand)>'Asus' AND
+POST(Senti>0.5)
+        </div>
+                        
+            <script>
+                var editor_FOR = ace.edit("editor_FOR");
+                editor_FOR.setTheme("ace/theme/xcode");
+                editor_FOR.session.setMode("ace/mode/sql");
+                editor_FOR.setOptions({
+                    // fontFamily: "tahoma",
+                    fontSize: "12pt"
+                });
+            </script>
+        </div>
+        <!-- UPDATE ROW -->
+        <div>
+            <button class="button-4" role="button" disabled style="color:#EDEFF2: #929090;">UPDATE</button>
+        </div>
+        <div class="span-col-5">
+            <select class="button-4" name="update_attribute" id="update_dropdown">
+                <option value="product">Price</option>
+                <option value="review">Brand</option>
+                <option value="rel_view">Senti</option>
+                <option value="rel_view">Rtng</option>
+            </select>
+            <div class='inline-text' style="display: inline;"> = </div>
+            <div style="display: inline;">
+                <input class="button-4" type="number" id="update_const" name="update_const" size="4"
+                style="width: 100px;" value='1.1'>
+            </div>
+            <div style="display: inline;">
+                <select class="button-4"  name="update_attribute" id="update_dropdown">
+                    <option value="product">x</option>
+                    <option value="review">+</option>
+                    <option value="rel_view">.</option>
+                </select>
+            </div>
+            <div style="display: inline;">
+                <input class="button-4" type="text" id="update_attr2" name="update_attr2" value=" PRE(Price)" disabled
+                style="background-color: rgba(216, 216, 216, 0.548); width: 120px">
+            </div>
+        </div>
+        <!-- WHEN ROW -->
+        <div>
+        </div>
+        <div>
+            <button class="button-4" role="button">+ WHEN</button>
+        </div>
+        <div class="span-col-4">
+            <div id="editor_WHEN">Brand = 'Asus'
+            </div>
+                        
+            <script>
+                var editor_WHEN = ace.edit("editor_WHEN");
+                editor_WHEN.setTheme("ace/theme/xcode");
+                editor_WHEN.session.setMode("ace/mode/sql");
+                editor_WHEN.setOptions({
+                    // fontFamily: "tahoma",
+                    fontSize: "12pt"
+                });
+            </script>
+        </div>
+        
+        
+    </div>
+  
+    <!-- OUTPUT GRID MIDDLE RIGHT -->
+    <div class="output_grid">
+        
+        <div>
+            <div id="bar-out-1">
+                <img id="bar1" src="other/bar_graph1.jpg" style="
+                width: 200px;
+                height: 250px;
+                object-fit: contain;">
+            </div>
+        </div>
+
+        <div>
+            <div id="bar-out-2">
+                <img id="bar2" src="other/bar_graph2.jpg" style="
+                width: 400px;
+                height: 300px;
+                object-fit: contain;">
+            </div>
+        </div>
+
+        <div>
+            C
+        </div>
+
+        <div>
+            D
+        </div>
+
+
+    </div>
+
+    <!-- CAUSAL GRAPH BOTTOM LEFT -->
+    <div class="bottom_banner">
+        <div id="causal_graph">
+            <img id="causal_img" src="other/causal_graph2.jpg" alt="causal graph" >
+        </div>
+        <div class="bold_title">
+            Causal Graph
+        </div>
+    </div>
+
+    <!-- RELEVANT VIEW BOTTOM RIGHT -->
+    <div class="bottom_banner">
+        <div class="bold_title">
+            Relevant View
+        </div>
+        <br>
+        <div id="rel_view_table">
+            <table border="1" class="dataframe">
+                <thead>
+                  <tr style="text-align: right;">
+                    <th></th>
+                    <th>PID</th>
+                    <th>Category</th>
+                    <th>Price</th>
+                    <th>Brand</th>
+                    <th>Color</th>
+                    <th>Quality</th>
+                    <th>ReviewID</th>
+                    <th>Senti</th>
+                    <th>Rtng</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th>0</th>
+                    <td>1</td>
+                    <td>Laptop</td>
+                    <td>999.0</td>
+                    <td>Vaio</td>
+                    <td>Silver</td>
+                    <td>0.70</td>
+                    <td>1.0</td>
+                    <td>-0.95</td>
+                    <td>2.0</td>
+                  </tr>
+                  <tr>
+                    <th>1</th>
+                    <td>2</td>
+                    <td>Laptop</td>
+                    <td>529.0</td>
+                    <td>Asus</td>
+                    <td>Black</td>
+                    <td>0.65</td>
+                    <td>2.5</td>
+                    <td>0.25</td>
+                    <td>2.5</td>
+                  </tr>
+                  <tr>
+                    <th>2</th>
+                    <td>3</td>
+                    <td>Laptop</td>
+                    <td>599.0</td>
+                    <td>HP</td>
+                    <td>Silver</td>
+                    <td>0.50</td>
+                    <td>4.0</td>
+                    <td>0.59</td>
+                    <td>4.0</td>
+                  </tr>
+                  <tr>
+                    <th>3</th>
+                    <td>4</td>
+                    <td>DSLR Camera</td>
+                    <td>549.0</td>
+                    <td>Canon</td>
+                    <td>Black</td>
+                    <td>0.75</td>
+                    <td>5.0</td>
+                    <td>0.70</td>
+                    <td>4.0</td>
+                  </tr>
+                </tbody>
+            </table>
+        </div>
+        
+    </div>
+
+</div>
+
+
+
+</body>
+</html>
+
