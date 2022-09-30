@@ -1,96 +1,50 @@
+
+{% import "bootstrap/fixes.html" as fixes %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% import "bootstrap/utils.html" as util %}
 <!DOCTYPE html>
 <html>
 
 
 <head>
 
-    <link rel="stylesheet" href="what_if.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='how_to.css') }}">
 
     <script src="https://pagecdn.io/lib/ace/1.4.5/ace.js" integrity="sha256-5Xkhn3k/1rbXB+Q/DX/2RuAtaB4dRRyQvMs83prFjpM=" crossorigin="anonymous"></script>
 
 </head>
-
-
-
+    
 
 <body>
-
-
 
 <div class="container">
 
     <!-- TOP LEFT -->
     <div class="top_banner">
-
-        <select class="button-4" name="table" id="database_dropdown">
-            <option value="Amazon Product">Amazon Product</option>
-            <option value="Adult Income">Adult Income</option>
-        </select>
-
-        <div style="display: inline; float: right;">
-            <button class="button-4" role="button">Base Tables</button>
-        </div>
-
-        <div class="tab">
-            <button class="tablinks" onclick="openCity(event, 'What-If')">What-If</button>
-            <button class="tablinks" onclick="openCity(event, 'How-To')">How-To</button>
-        </div>
-
-        <!-- HELP TIPS -->
-        <div style="z-index: 1000;">
-            <div class="help-tip" id="help-tip-whatif" style="top: 60px; left: 180px;">
-                <p>This is the inline help tip for what-if!</p>
+        
+        <div class="dropdown">
+            <button class="dropbtn">Select Database</button>
+            <div class="dropdown-content">
+            <a href="#">Amazon Product</a>
+            <a href="#">Adult Income</a>
             </div>
         </div>
 
-        <div style="z-index: 1000;">
-            <div class="help-tip" id="help-tip-use" style="top: 150px; left: 10px;">
-                <p>This is the inline help tip for use!</p>
-            </div>
-        </div>
 
-        <div style="z-index: 1000;">
-            <div class="help-tip" id="help-tip-output" style="top: 452px; left: 10px;">
-                <p>This is the inline help tip for output!</p>
-            </div>
-        </div>
-
-        <div style="z-index: 1000;">
-            <div class="help-tip" id="help-tip-update" style="top: 615px; left: 10px;">
-                <p>This is the inline help tip for update!</p>
-            </div>
-        </div>
-
-        <div style="display: inline; float: right; margin-top: 10px;">
-            <button class="button-4" role="button" style="background-color: rgb(104, 213, 80);">RUN</button>
-        </div>
-          
     </div>
 
     <!-- TOP RIGHT -->
     <div class="top_banner">
-
-        <div class="tab" style="margin-top: 32px;">
-            <button class="tablinks" onclick="openCity(event, 'Overall')">Overall</button>
-            <button class="tablinks" onclick="openCity(event, 'Vary Updates')">Vary Updates</button>
-        </div>
-
-        <!-- HELP TIPS -->
-        <div style="z-index: 1000;">
-            <div class="help-tip" id="help-tip-overall" style="top: 60px; left: 866px;">
-                <p>This is the inline help tip for overall!</p>
-            </div>
-        </div>
-
+        B
     </div>
-  
+
     <!-- INPUT GRID MIDDLE LEFT -->
+
     <div class="input_grid">
         <!-- USE ROW -->
         <div class="span-row-2">
             <button class="button-4" role="button" disabled style="color:#EDEFF2: #929090;">USE</button>
         </div>
-        
         <div class="span-col-5">
             <select class="button-4" name="table" id="table-dropdown">
                 <option value="product">Custom</option>
@@ -131,9 +85,9 @@ T1.Price, T1.Brand, T1.Color, T1.Quality
     
     
         </div>
-        <!-- OUTPUT ROW -->
+        <!-- MAXIMIZE ROW -->
         <div>
-            <button class="button-4" role="button" disabled style="color:#EDEFF2: #929090;">OUTPUT</button>
+            <button class="button-4" role="button" disabled style="color:#EDEFF2: #929090;">MAXIMIZE</button>
         </div>
         <div class="span-col-5">
             <select class="button-4" name="output_aggr" id="output_aggr">
@@ -157,8 +111,12 @@ T1.Price, T1.Brand, T1.Color, T1.Quality
             <button class="button-4" role="button">+ FOR</button>
         </div>
         <div class="span-col-4">
-            <div id="editor_FOR">PRE(Brand)>'Asus' AND
-POST(Senti>0.5)
+            <div id="editor_FOR">Brand='Asus' and
+POST(Senti)>0.5
+                
+    <!-- PRE(Category)='Laptop' OR
+    PRE(Category)='DSLR Camera' AND
+    Brand='Asus' -->
         </div>
                         
             <script>
@@ -173,30 +131,39 @@ POST(Senti>0.5)
         </div>
         <!-- UPDATE ROW -->
         <div>
-            <button class="button-4" role="button" disabled style="color:#EDEFF2: #929090;">UPDATE</button>
+            <button class="button-4" role="button" disabled style="color:#EDEFF2: #929090;">HOW TO<br>UPDATE</button>
         </div>
         <div class="span-col-5">
             <select class="button-4" name="update_attribute" id="update_dropdown">
                 <option value="product">Price</option>
                 <option value="review">Brand</option>
+                <option value="review">Color</option>
+                <option value="review">Quality</option>
                 <option value="rel_view">Senti</option>
                 <option value="rel_view">Rtng</option>
             </select>
-            <div class='inline-text' style="display: inline;"> = </div>
             <div style="display: inline;">
-                <input class="button-4" type="number" id="update_const" name="update_const" size="4"
-                style="width: 100px;" value='1.1'>
-            </div>
-            <div style="display: inline;">
-                <select class="button-4"  name="update_attribute" id="update_dropdown">
-                    <option value="product">x</option>
-                    <option value="review">+</option>
-                    <option value="rel_view">.</option>
+                <select class="button-4" name="update_attribute" id="update_dropdown">
+                    <option value="product">Price</option>
+                    <option value="review">Brand</option>
+                    <option value="review">Color</option>
+                    <option value="review">Quality</option>
+                    <option value="rel_view">Senti</option>
+                    <option value="rel_view">Rtng</option>
                 </select>
             </div>
             <div style="display: inline;">
-                <input class="button-4" type="text" id="update_attr2" name="update_attr2" value=" PRE(Price)" disabled
-                style="background-color: rgba(216, 216, 216, 0.548); width: 120px">
+                <select class="button-4" name="update_attribute" id="update_dropdown">
+                    <option value="product">Price</option>
+                    <option value="review">Brand</option>
+                    <option value="review">Color</option>
+                    <option value="review">Quality</option>
+                    <option value="rel_view">Senti</option>
+                    <option value="rel_view">Rtng</option>
+                </select>
+            </div>
+            <div style="display: inline;">
+                <button class="button-4" role="button">+</button>
             </div>
         </div>
         <!-- WHEN ROW -->
@@ -207,6 +174,8 @@ POST(Senti>0.5)
         </div>
         <div class="span-col-4">
             <div id="editor_WHEN">Brand = 'Asus'
+    <!-- Brand = 'Asus' AND
+    Category='Laptop -->
             </div>
                         
             <script>
@@ -219,40 +188,70 @@ POST(Senti>0.5)
                 });
             </script>
         </div>
+        <!-- LIMIT ROW -->
+        <div>
+        </div>
+        <div>
+            <button class="button-4" role="button">+ LIMIT</button>
+        </div>
+        <div class="span-col-4">
+            <div style="display: inline;">
+                <select class="button-4" name="update_attribute" id="update_dropdown">
+                    <option value="product">Price</option>
+                    <option value="review">Brand</option>
+                    <option value="review">Color</option>
+                    <option value="review">Quality</option>
+                    <option value="rel_view">Senti</option>
+                    <option value="rel_view">Rtng</option>
+                </select>
+            </div>
+            <div style="display: inline;">
+                <input class="button-4" type="text" id="relview" name="relview" value="IN" disabled
+                style="background-color: rgba(216, 216, 216, 0.548); width: 55px">
+            </div>
+            <div style="display: inline;">
+                <input class="button-4" type="text" id="update_const" name="update_const" size="4" style="width: 30%;" value="[500,800]">
+            </div>
+    
+                
+        </div>
+        <div>  
+        </div>
+        <div>
+        </div>
+        <div class="span-col-4">
+            <div style="display: inline;">
+                <input class="button-4" type="text" id="relview" name="relview" value="L1" disabled
+                style="background-color: rgba(216, 216, 216, 0.548); width: 50px">
+            </div>
+            <div style="display: inline; width: 100px;">
+                <select class="button-4" name="update_attribute" id="update_dropdown" style="width: 115px;">
+                    <option value="product">PRE(Price)</option>
+                    <option value="review">PRE(Brand)</option>
+                    <option value="review">PRE(Color)</option>
+                    <option value="rel_view">PRE(Senti)</option>
+                    <option value="rel_view">PRE(Rtng)</option>
+                </select>
+            </div>
+            <div style="display: inline;">
+                <input class="button-4" type="text" id="relview" name="relview" value="POST(Price)" disabled
+                style="background-color: rgba(216, 216, 216, 0.548); width: 124px">
+            </div>
+            <div class='inline-text' style="display: inline;"> ≤ </div>
+            <div style="display: inline;">
+                <input class="button-4" type="number" id="update_const" name="update_const" size="4" style="width: 81px;" value="400">
+            </div>
+    
+                
+        </div>
+    
         
         
     </div>
-  
+    
     <!-- OUTPUT GRID MIDDLE RIGHT -->
     <div class="output_grid">
         
-        <div>
-            <div id="bar-out-1">
-                <img id="bar1" src="other/bar_graph1.jpg" style="
-                width: 200px;
-                height: 250px;
-                object-fit: contain;">
-            </div>
-        </div>
-
-        <div>
-            <div id="bar-out-2">
-                <img id="bar2" src="other/bar_graph2.jpg" style="
-                width: 400px;
-                height: 300px;
-                object-fit: contain;">
-            </div>
-        </div>
-
-        <div>
-            C
-        </div>
-
-        <div>
-            D
-        </div>
-
-
     </div>
 
     <!-- CAUSAL GRAPH BOTTOM LEFT -->
@@ -260,21 +259,17 @@ POST(Senti>0.5)
         <div id="causal_graph">
             <img id="causal_img" src="other/causal_graph2.jpg" alt="causal graph" >
         </div>
-        <div class="bold_title">
+        <div id="causal_title">
             Causal Graph
         </div>
     </div>
 
     <!-- RELEVANT VIEW BOTTOM RIGHT -->
     <div class="bottom_banner">
-        <div class="bold_title">
-            Relevant View
-        </div>
-        <br>
         <div id="rel_view_table">
             <table border="1" class="dataframe">
                 <thead>
-                  <tr style="text-align: right;">
+                    <tr style="text-align: right;">
                     <th></th>
                     <th>PID</th>
                     <th>Category</th>
@@ -285,10 +280,10 @@ POST(Senti>0.5)
                     <th>ReviewID</th>
                     <th>Senti</th>
                     <th>Rtng</th>
-                  </tr>
+                    </tr>
                 </thead>
                 <tbody>
-                  <tr>
+                    <tr>
                     <th>0</th>
                     <td>1</td>
                     <td>Laptop</td>
@@ -299,8 +294,8 @@ POST(Senti>0.5)
                     <td>1.0</td>
                     <td>-0.95</td>
                     <td>2.0</td>
-                  </tr>
-                  <tr>
+                    </tr>
+                    <tr>
                     <th>1</th>
                     <td>2</td>
                     <td>Laptop</td>
@@ -311,8 +306,8 @@ POST(Senti>0.5)
                     <td>2.5</td>
                     <td>0.25</td>
                     <td>2.5</td>
-                  </tr>
-                  <tr>
+                    </tr>
+                    <tr>
                     <th>2</th>
                     <td>3</td>
                     <td>Laptop</td>
@@ -323,8 +318,8 @@ POST(Senti>0.5)
                     <td>4.0</td>
                     <td>0.59</td>
                     <td>4.0</td>
-                  </tr>
-                  <tr>
+                    </tr>
+                    <tr>
                     <th>3</th>
                     <td>4</td>
                     <td>DSLR Camera</td>
@@ -335,7 +330,7 @@ POST(Senti>0.5)
                     <td>5.0</td>
                     <td>0.70</td>
                     <td>4.0</td>
-                  </tr>
+                    </tr>
                 </tbody>
             </table>
         </div>
@@ -345,7 +340,5 @@ POST(Senti>0.5)
 </div>
 
 
-
 </body>
 </html>
-
