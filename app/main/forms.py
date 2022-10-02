@@ -15,9 +15,9 @@ class InputWhatIfForm(FlaskForm):
 
     #USE part
     use_table = SelectField('USE Table', choices=[
-        ('custom','Custom'),
         ('product','Product'),
-        ('review','Review')
+        ('review','Review'),
+        ('custom','Custom'),
     ])
     #need to change: to dynamic choices related to datasets
     use = TextAreaField('USE', default="")
@@ -29,36 +29,40 @@ class InputWhatIfForm(FlaskForm):
         ('sum','SUM'),
         ('count','COUNT')
     ])
-    output_attrs = SelectField('OutputAttrs',choices= [
-        ('post_rtng','POST(Rtng)'),
-        ('post_brand','POST(Brand)'),
-        ('post_senti','POST(Senti)'),
-        ('post_price','POST(Price)')
-    ])
+    # output_attrs = SelectField('OutputAttrs',choices= [
+    #     ('post_rtng','POST(Rtng)'),
+    #     ('post_brand','POST(Brand)'),
+    #     ('post_senti','POST(Senti)'),
+    #     ('post_price','POST(Price)')
+    # ])
+    #dynamic button
+    output_attrs = SelectField('OutputAttrs',coerce=str)
+    
     #need to change: to dynamic choices when connect to database
     output = TextAreaField('OUTPUT',default = "")
     #output_for = SubmitField('+ FOR')
     #need to add: +FOR function
     
     #UPDATE part
-    update_attrs = SelectField('UpdateAttrs',choices=[
-        ('rtng','Rtng'),
-        ('brand','Brand'),
-        ('senti','Senti'),
-        ('price','Price')
-    ])
+    # update_attrs = SelectField('UpdateAttrs',choices=[
+    #     ('rtng','Rtng'),
+    #     ('brand','Brand'),
+    #     ('senti','Senti'),
+    #     ('price','Price')
+    # ])
+    update_attrs = SelectField('UpdateAttrs', coerce=str)
     #need to change: to dynamic choices when connect to database
     update_const = FloatField('UpdateConst')
-    #need to add: update conditions
+    #need to change the constant
+    update_sign = SelectField('UpdateSign', choices=[
+        ('add','+'),
+        ('multiply','x'),
+        ('dot','.')
+    ])
+    #the meaning of "."
+
+    #need to add: PRE(xxx)
+    #need to add: +WHEN function
     when = TextAreaField('WHEN', default="")
     
-    #run = SubmitField('RUN')
-
-
-    #incomplete
-    '''
-    def __init__(self, *args, **kwargs):
-        super(InputWhatIfForm, self).__init__(*args, **kwargs)
-        self.database.choices = [(database.id, database.name)
-                             for database in Databases.query.all()]
-    '''
+    run = SubmitField('RUN')
