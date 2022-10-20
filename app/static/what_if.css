@@ -10,7 +10,6 @@
     /* overflow: hidden; */
     /* border: 1px solid #ccc; */
     background-color: #f1f1f1;
-    
 }
 
 /* Style the buttons inside the tab */
@@ -146,7 +145,7 @@
 /* -------------------------------------- */
 /* QUERY INPUTS */
 
-.container {
+ .container {
     display: grid;
     grid-template-columns: 630px 900px;
     grid-template-rows: 90px 600px 360px;
@@ -154,7 +153,7 @@
     grid-row-gap: 15px;
     justify-items: stretch;
     align-items: stretch;
-}
+} 
 
 .input_grid {
     display: grid;

@@ -13,47 +13,42 @@ class InputWhatIfForm(FlaskForm):
     ])
     base_tables = SubmitField('BaseTables',validators=None)
 
-    #USE part
+    #groupby query part
     use_table = SelectField('USE Table', choices=[
         ('product','Product'),
         ('review','Review'),
         ('custom','Custom'),
     ])
-    #need to change: to dynamic choices related to datasets
+    #not use now
     use = TextAreaField('USE', default="")
-    run_relevant = SubmitField('RunRelevantView',validators=None)
-    
+    run_relevant = SubmitField('Plot Query',validators=None)
+
+
+    #dropdown menu field for placeholder query
     #OUTPUT part
     output_type = SelectField('OutputType', choices = [
         ('avg','AVG'),
         ('sum','SUM'),
         ('count','COUNT')
     ])
-    # output_attrs = SelectField('OutputAttrs',choices= [
-    #     ('post_rtng','POST(Rtng)'),
-    #     ('post_brand','POST(Brand)'),
-    #     ('post_senti','POST(Senti)'),
-    #     ('post_price','POST(Price)')
-    # ])
+    output_attrs = SelectField('OutputAttrs',choices= [
+        ('post_rtng','POST(Rtng)'),
+        ('post_brand','POST(Brand)'),
+        ('post_senti','POST(Senti)'),
+        ('post_price','POST(Price)')
+    ])
     #dynamic button
-    output_attrs = SelectField('OutputAttrs',coerce=str)
-    
-    #need to change: to dynamic choices when connect to database
-    output = TextAreaField('OUTPUT',default = "")
-    #output_for = SubmitField('+ FOR')
-    #need to add: +FOR function
+    #output_attrs = SelectField('OutputAttrs',coerce=str)
     
     #UPDATE part
-    # update_attrs = SelectField('UpdateAttrs',choices=[
-    #     ('rtng','Rtng'),
-    #     ('brand','Brand'),
-    #     ('senti','Senti'),
-    #     ('price','Price')
-    # ])
-    update_attrs = SelectField('UpdateAttrs', coerce=str)
-    #need to change: to dynamic choices when connect to database
+    update_attrs = SelectField('UpdateAttrs',choices=[
+        ('rtng','Rtng'),
+        ('brand','Brand'),
+        ('senti','Senti'),
+        ('price','Price')
+    ])
+    #update_attrs = SelectField('UpdateAttrs', coerce=str)
     update_const = FloatField('UpdateConst')
-    #need to change the constant
     update_sign = SelectField('UpdateSign', choices=[
         ('add','+'),
         ('multiply','x'),
@@ -61,6 +56,43 @@ class InputWhatIfForm(FlaskForm):
     ])
     #the meaning of "."
 
+    for_attrs = SelectField('ForAttrs'choices=[
+        ('rtng','Rtng'),
+        ('brand','Brand'),
+        ('senti','Senti'),
+        ('price','Price')
+    ])
+    for_comp = SelectField('ForComp', choices=[
+        ('bigger','>'),
+        ('equal','='),
+        ('smaller','<'),
+        ('bigger_equal','>='),
+        ('smaller_equal','<=')
+    ])
+    for_const = FloatField('ForConst')
+
+
+    show_attrs = SelectField('ShowAttrs'choices=[
+        ('rtng','Rtng'),
+        ('brand','Brand'),
+        ('senti','Senti'),
+        ('price','Price')
+    ])
+    show_comp = SelectField('ShowComp', choices=[
+        ('bigger','>'),
+        ('equal','='),
+        ('smaller','<'),
+        ('bigger_equal','>='),
+        ('smaller_equal','<=')
+    ])
+    show_const = FloatField('ShowConst')
+
+
+
+    #need to change: to dynamic choices when connect to database
+    output = TextAreaField('OUTPUT',default = "")
+    #output_for = SubmitField('+ FOR')
+    #need to add: +FOR function
     #need to add: PRE(xxx)
     #need to add: +WHEN function
     when = TextAreaField('WHEN', default="")

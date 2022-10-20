@@ -1,75 +1,64 @@
-{% import "bootstrap/fixes.html" as fixes %}
-{% import "bootstrap/wtf.html" as wtf %}
-{% import "bootstrap/utils.html" as util %}
 <!DOCTYPE html>
-<html>
-
-
+<html lang="en">
+<title>HypeR</title>
 <head>
-
-    <link rel="stylesheet" href="{{ url_for('static', filename='what_if.css') }}">
-
-    <script src="https://pagecdn.io/lib/ace/1.4.5/ace.js" integrity="sha256-5Xkhn3k/1rbXB+Q/DX/2RuAtaB4dRRyQvMs83prFjpM=" crossorigin="anonymous"></script>
 
 </head>
 
 
 
+    <link rel="stylesheet" href="{{ url_for('static', filename='what_if.css') }}">
+    <script src="https://pagecdn.io/lib/ace/1.4.5/ace.js" integrity="sha256-5Xkhn3k/1rbXB+Q/DX/2RuAtaB4dRRyQvMs83prFjpM=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <!-- <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+    body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
+    .w3-bar,h1,button {font-family: "Montserrat", sans-serif}
+    .fa-anchor,.fa-coffee {font-size:200px} -->
+    </style>
+
+
+
+
 
 <body>
-    
+
+<!-- Navbar -->
+<div class="w3-top">
+    <div class="w3-bar w3-blue w3-card w3-middle-align w3-large">
+   <center>HypeR: : Hypothetical Reasoning With What-If and How-To Queries Using a Probabilistic Causal Approach</center></div>
+   <div class="w3-bar w3-blue w3-card w3-middle-align w3-large">
+      <center><a href="{{ url_for('main.index') }}" class="w3-bar-item w3-button w3-padding-large w3-hover-white">Home</a>
+      <a href="https://sainyamgalhotra.github.io/papers/HypeR_fullversion.pdf" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Paper</a>
+      <a href="{{ url_for('main.query_input_what_if') }}" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">What-if Query</a></center>
+      <a href="{{ url_for('main.query_input_how_to') }}" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">How-to Query</a></center>
+    </div>
+  
+    <!-- Navbar on small screens -->
+    <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large">
+      <a href="#" class="w3-bar-item w3-button w3-padding-large">Demo</a>
+      <a href="#" class="w3-bar-item w3-button w3-padding-large">Papers</a>
+      <a href="#" class="w3-bar-item w3-button w3-padding-large">Contact Us</a>
+    </div>
+  </div>
+<br><br> 
 
 <form method = 'post' action = '/query_input_what_if'>
 <div class="container">
+
+
     <!-- TOP LEFT -->
     <div class="top_banner">
-        {{ form.database(id='database', class = 'button-4') }}
-        <!-- <select class="button-4" name="database" id="database">
-            
-            <option value="Amazon Product">Amazon Product</option>
-            <option value="Adult Income">Adult Income</option>
-        </select> -->
-        <input type="submit" name = 'go' value="Go">
-            
-
-        <div style="display: inline; float: right;">
-            {{ form.base_tables(class = 'button-4')}}
-            <!-- <button class="button-4" name = 'base_tables' role="button">Base Tables</button> -->
-        </div>
-
         <div class="tab">
             <button class="tablinks" onclick="openCity(event, 'What-If')">What-If</button>
             <button class="tablinks" onclick="openCity(event, 'How-To')">How-To</button>
         </div>
 
-        <!-- HELP TIPS -->
-        <div style="z-index: 1000;">
-            <div class="help-tip" id="help-tip-whatif" style="top: 60px; left: 180px;">
-                <p>This is the inline help tip for what-if!</p>
-            </div>
-        </div>
-
-        <div style="z-index: 1000;">
-            <div class="help-tip" id="help-tip-use" style="top: 150px; left: 10px;">
-                <p>This is the inline help tip for use!</p>
-            </div>
-        </div>
-
-        <div style="z-index: 1000;">
-            <div class="help-tip" id="help-tip-output" style="top: 452px; left: 10px;">
-                <p>This is the inline help tip for output!</p>
-            </div>
-        </div>
-
-        <div style="z-index: 1000;">
-            <div class="help-tip" id="help-tip-update" style="top: 615px; left: 10px;">
-                <p>This is the inline help tip for update!</p>
-            </div>
-        </div>
-
-        <div style="display: inline; float: right; margin-top: 10px;">
-            <button class="button-4" name = 'run' role="button" style="background-color: rgb(104, 213, 80);">RUN</button>
-        </div>
         
     </div>
 
@@ -81,36 +70,46 @@
             <button class="tablinks" onclick="openCity(event, 'Vary Updates')">Vary Updates</button>
         </div>
 
-        <!-- HELP TIPS -->
-        <div style="z-index: 1000;">
-            <div class="help-tip" id="help-tip-overall" style="top: 60px; left: 866px;">
-                <p>This is the inline help tip for overall!</p>
-            </div>
-        </div>
-
     </div>
 
     <!-- INPUT GRID MIDDLE LEFT -->
     <div class="input_grid">
-        <!-- USE ROW -->
         <div class="span-row-2">
-            <button class="button-4" role="button" disabled style="color:#EDEFF2: #929090;">USE</button>
+            <label>Choose Database</label>
         </div>
         
         <div class="span-col-5">
 
-            {{ form.use_table(id='table-dropdown',class='button-4')}}
+            {{ form.database(id='database', class = 'button-4') }}
+            <div style="display: inline; float: right;">
+                <button class="button-4" name = 'base_tables' role="button">Show Causal Graph</button>
+                <!-- {{ form.base_tables(class = 'button-4')}} -->
+                <!-- <button class="button-4" name = 'base_tables' role="button">Base Tables</button> -->
+            </div>
+            <!-- <div class="inline-text" style="display: inline;"> </div> -->
+        </div>
+
+
+        <!-- USE ROW -->
+        <div class="span-row-2">
+            <label>Aggregate Query</label>
+            <!-- <button class="button-4" role="button" disabled style="color:#EDEFF2: #929090;">USE</button> -->
+        </div>
+        
+        <!-- <div class="span-col-5">
+
+            {{ form.use_table(id='table-dropdown',class='button-4')}} -->
             <!-- <select class="button-4" name="table" id="table-dropdown">
                 <option value="product">Custom</option>
                 <option value="review">Review</option>
                 <option value="rel_view">Product</option>
             </select> -->
-            <div style="display: inline;">
+            <!-- <div style="display: inline;">
                 <input class="button-4" type="text" id="relview" name="relview" value="AS RelevantView" disabled
                 style="background-color: rgba(216, 216, 216, 0.548); width: 165px">
-            </div>
-            <!-- <div class="inline-text" style="display: inline;"> </div> -->
-        </div>
+            </div> -->
+            <!-- <div class="inline-text" style="display: inline;"> </div>
+        </div> -->
 
         <div class="span-col-5"> 
             <div id="editor_USE"></div>
@@ -244,6 +243,9 @@
             </script>
         </div>
         
+        <div style="display: inline; float: right; margin-top: 10px;">
+            <button class="button-4" name = 'run' role="button" style="background-color: rgb(104, 213, 80);">RUN</button>
+        </div>
         
     </div>
 
@@ -273,7 +275,14 @@
         </div>
 
         <div>
-            C
+            {%- if default_plot -%}
+            <div id="bar-out-2">
+                <img id="bar" src="/static/bar_graph.jpg" style="
+                width: 400px;
+                height: 300px;
+                object-fit: contain;">
+            </div>
+            {%- endif %}
         </div>
 
         <div>
