@@ -61,7 +61,7 @@ def get_bar_plot(attr_x,attr_y,attr_list, items):
 
 @main.route('/')
 def index():
-    return render_template('index copy.html')
+    return render_template('index.html')
 
 @main.route('/query_input_what_if', methods=['GET', 'POST'])
 def query_input_what_if():
@@ -80,7 +80,7 @@ def query_input_what_if():
         casual_graph = True
         #return render_template('query_input_what_if.html', form=form, causal_graph = casual_graph)
 
-
+    #now it means run the aggregate query and plot
     elif 'run_relevant' in request.form:
         print('RUN Agg query')
         attr_list, items = get_relevant_table(form)
@@ -90,6 +90,7 @@ def query_input_what_if():
             form.update_attrs.choices = [(attr,"POST(" +str(attr)+")") for attr in attr_list]
         session['attr_list']=attr_list
         session['items'] = items
+        session['default_plot'] = True #when run the aggregate query, generate a default bar plot(automatically choose the)
         
         #return render_template('query_input_what_if.html', form=form,
         #    causal_graph=casual_graph,attr_list = attr_list, items = items, len_item = len(attr_list))
@@ -99,18 +100,22 @@ def query_input_what_if():
         session['final_run'] = True
         attr_list = session['attr_list']
         items = session['items']
-        attr_x = form.update_attrs.data
-        attr_y = form.output_attrs.data
-        get_bar_plot(attr_x,attr_y,attr_list, items)
+        #generate default_plot
+        # attr_x = form.update_attrs.data
+        # attr_y = form.output_attrs.data
+        # get_bar_plot(attr_x,attr_y,attr_list, items)
         #need to add API
 
     if form.is_submitted():
         casual_graph = session.get("causal_graph", None)
+
         attr_list = session.get('attr_list', None)
         items = session.get('items', None)
+        default_plot = session.get('items', None)
+        
         final_run = session.get('final_run',None)
         return render_template('query_input_what_if.html', form = form,
-            causal_graph=casual_graph, attr_list = attr_list, items = items, len_item = len(attr_list), final_run=final_run)
+            causal_graph=casual_graph, attr_list = attr_list, items = items, len_item = len(attr_list), default_plot = default_plot,final_run=final_run)
     else:
         print('wrong')
         return render_template('query_input_what_if.html', form = form)

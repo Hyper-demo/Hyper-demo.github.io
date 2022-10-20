@@ -56,7 +56,7 @@ class InputWhatIfForm(FlaskForm):
     ])
     #the meaning of "."
 
-    for_attrs = SelectField('ForAttrs'choices=[
+    for_attrs = SelectField('ForAttrs',choices=[
         ('rtng','Rtng'),
         ('brand','Brand'),
         ('senti','Senti'),
@@ -72,7 +72,7 @@ class InputWhatIfForm(FlaskForm):
     for_const = FloatField('ForConst')
 
 
-    show_attrs = SelectField('ShowAttrs'choices=[
+    show_attrs = SelectField('ShowAttrs',choices=[
         ('rtng','Rtng'),
         ('brand','Brand'),
         ('senti','Senti'),
