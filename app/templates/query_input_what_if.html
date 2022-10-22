@@ -74,15 +74,16 @@
 
     <!-- INPUT GRID MIDDLE LEFT -->
     <div class="input_grid">
-        <div class="span-row-2">
+        <div>
             <label>Choose Database</label>
+            <!-- <button class="button-4" role="button" disabled style="color:#EDEFF2: #929090;">Enter Aggregate Query Here:</button> -->
         </div>
+
         
         <div class="span-col-5">
-
             {{ form.database(id='database', class = 'button-4') }}
             <div style="display: inline; float: right;">
-                <button class="button-4" name = 'base_tables' role="button">Show Causal Graph</button>
+                <button class="button-4" role="button">Specify Constraints</button>
                 <!-- {{ form.base_tables(class = 'button-4')}} -->
                 <!-- <button class="button-4" name = 'base_tables' role="button">Base Tables</button> -->
             </div>
@@ -91,7 +92,7 @@
 
 
         <!-- USE ROW -->
-        <div class="span-row-2">
+        <div>
             <label>Aggregate Query</label>
             <!-- <button class="button-4" role="button" disabled style="color:#EDEFF2: #929090;">USE</button> -->
         </div>
@@ -140,28 +141,28 @@
     
         </div>
         <!-- OUTPUT ROW -->
-        <div>
+        <!-- <div>
             <button class="button-4" role="button" disabled style="color:#EDEFF2: #929090;">OUTPUT</button>
         </div>
         <div class="span-col-5">
-            {{ form.output_type(class='button-4')}}
+            {{ form.output_type(class='button-4')}} -->
             <!-- <select class="button-4" name="output_aggr" id="output_aggr">
                 <option value="count">AVG</option>
                 <option value="sum">SUM</option>
                 <option value="avg">COUNT</option>
             </select> -->
-            <div style="display: inline;">
-                {{ form.output_attrs(class='button-4')}}
+            <!-- <div style="display: inline;">
+                {{ form.output_attrs(class='button-4')}} -->
                 <!-- <select class="button-4" name="output_aggr" id="output_aggr">
                     <option value="product">POST(Rtng)</option>
                     <option value="review">POST(Brand)</option>
                     <option value="rel_view">POST(Senti)</option>
                     <option value="rel_view">POST(Price)</option>
                 </select> -->
-            </div>
-        </div>  
+            <!-- </div> -->
+        <!-- </div>   -->
         <!-- FOR ROW --> 
-        <div>
+        <!-- <div>
         </div> 
         <div>
             <button class="button-4" role="button">+ FOR</button>
@@ -184,12 +185,66 @@
                     textarea_for.value=editor_FOR.getSession().getValue();
                 });
             </script>
-        </div>
+        </div> -->
 
+        <div>
+            <label>Update Attribute</label>
+        </div>
+        
+        <div class = 'span-col-5'>
+            If we were to update the attribute :
+            <div class="span-col-5">
+                <select class="button-4">
+                    <option value="product">POST(Rtng)</option>
+                    <option value="review">POST(Brand)</option>
+                    <option value="rel_view">POST(Price)</option>
+                    <option value="rel_view">POST(Category)</option>
+                    <option value="rel_view">POST(Quality)</option>
+                    <option value="rel_view">POST(Color)</option>
+                </select> 
+            <div class='inline-text' style="display: inline;"> as </div>
+            <div style="display: inline;">
+                <input class="button-4" type="number" id="update_const" name="update_const" size="4"
+                style="width: 100px;" value='1.1'>
+            </div>
+            <div style="display: inline;">
+                <!-- {{ form.update_sign(class='button-4',id='update_dropdown')}} -->
+                <select class="button-4"  name="update_attribute" id="update_dropdown">
+                    <option value="product">x</option>
+                    <option value="review">+</option>
+                    <option value="rel_view">.</option>
+                </select>
+            </div>
+
+            <div style="display: inline;">
+                <input class="button-4" type="text" id="update_attr2" name="update_attr2" value=" PRE(Price)" disabled
+                style="background-color: rgba(216, 216, 216, 0.548); width: 120px">
+            </div>
+        </div>
+        <div class="span-col-5">
+            For a subset that satisfies:
+            <div class="span-col-5">
+                <select class="button-4">
+                    <option value="product">Rtng</option>
+                    <option value="review">Brand</option>
+                    <option value="rel_view">Price</option>
+                    <option value="rel_view">Category</option>
+                    <option value="rel_view">Quality</option>
+                    <option value="rel_view">Color</option>
+                </select>
+                <div class='inline-text' style="display: inline;"> = </div>
+                <select class="button-4">
+                    <option value="product">Asus</option>
+                </select>
+            </div>
+            
+            </div>
+        </div>
 
         <!-- UPDATE ROW -->
         <div>
-            <button class="button-4" role="button" disabled style="color:#EDEFF2: #929090;">UPDATE</button>
+            <!-- <button class="button-4" role="button" disabled style="color:#EDEFF2: #929090;">UPDATE</button> -->
+            <label>Update Attribute</label>
         </div>
         <div class="span-col-5">
             {{ form.update_attrs(class='button-4', id = 'update_dropdown')}}
@@ -251,7 +306,6 @@
 
     <!-- OUTPUT GRID MIDDLE RIGHT -->
     <div class="output_grid">
-        
         <div>
             {%- if final_run -%}
             <div id="bar-out-1">
@@ -281,6 +335,10 @@
                 width: 400px;
                 height: 300px;
                 object-fit: contain;">
+            </div>
+            <div class="bold_title">
+                Aggregate Query View
+            
             </div>
             {%- endif %}
         </div>
