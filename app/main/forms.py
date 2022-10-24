@@ -21,7 +21,7 @@ class InputWhatIfForm(FlaskForm):
     ])
     #not use now
     use = TextAreaField('USE', default="")
-    run_relevant = SubmitField('Plot Query',validators=None)
+    run_relevant = SubmitField('Run Aggregate Query',validators=None)
 
 
     #dropdown menu field for placeholder query

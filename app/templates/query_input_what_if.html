@@ -81,9 +81,9 @@
 
         
         <div class="span-col-5">
-            {{ form.database(id='database', class = 'button-4') }}
+            {{ form.database(id='database', class = 'button') }}
             <div style="display: inline; float: right;">
-                <button class="button-4" role="button">Specify Constraints</button>
+                <button class="button-4" role="button" style = "background-color: rgba(27, 31, 35, 0.15)">Specify Constraints</button>
                 <!-- {{ form.base_tables(class = 'button-4')}} -->
                 <!-- <button class="button-4" name = 'base_tables' role="button">Base Tables</button> -->
             </div>
@@ -134,7 +134,7 @@
          
             <div style="width: 100px; height: 50px;">
                 <br>
-                {{ form.run_relevant(class = 'button-4', style="background-color: rgba(130, 192, 128, 0.548);")}}
+                {{ form.run_relevant(class = 'button-4', style="background-color: rgba(27, 31, 35, 0.15);")}}
                 <!-- <button class="button-4" name = 'run_relevant' role="button" style="background-color: rgba(130, 192, 128, 0.548);">RUN RELEVANT VIEW</button> -->
             </div>
     
@@ -194,7 +194,7 @@
         <div class = 'span-col-5'>
             If we were to update the attribute :
             <div class="span-col-5">
-                <select class="button-4">
+                <select class="button">
                     <option value="product">POST(Rtng)</option>
                     <option value="review">POST(Brand)</option>
                     <option value="rel_view">POST(Price)</option>
@@ -204,12 +204,12 @@
                 </select> 
             <div class='inline-text' style="display: inline;"> as </div>
             <div style="display: inline;">
-                <input class="button-4" type="number" id="update_const" name="update_const" size="4"
+                <input class="button" type="number" id="update_const" name="update_const" size="4"
                 style="width: 100px;" value='1.1'>
             </div>
             <div style="display: inline;">
                 <!-- {{ form.update_sign(class='button-4',id='update_dropdown')}} -->
-                <select class="button-4"  name="update_attribute" id="update_dropdown">
+                <select class="button"  name="update_attribute" id="update_dropdown">
                     <option value="product">x</option>
                     <option value="review">+</option>
                     <option value="rel_view">.</option>
@@ -217,14 +217,14 @@
             </div>
 
             <div style="display: inline;">
-                <input class="button-4" type="text" id="update_attr2" name="update_attr2" value=" PRE(Price)" disabled
+                <input class="button" type="text" id="update_attr2" name="update_attr2" value=" PRE(Price)" disabled
                 style="background-color: rgba(216, 216, 216, 0.548); width: 120px">
             </div>
         </div>
         <div class="span-col-5">
             For a subset that satisfies:
             <div class="span-col-5">
-                <select class="button-4">
+                <select class="button">
                     <option value="product">Rtng</option>
                     <option value="review">Brand</option>
                     <option value="rel_view">Price</option>
@@ -233,7 +233,7 @@
                     <option value="rel_view">Color</option>
                 </select>
                 <div class='inline-text' style="display: inline;"> = </div>
-                <select class="button-4">
+                <select class="button">
                     <option value="product">Asus</option>
                 </select>
             </div>
@@ -247,7 +247,7 @@
             <label>Update Attribute</label>
         </div>
         <div class="span-col-5">
-            {{ form.update_attrs(class='button-4', id = 'update_dropdown')}}
+            {{ form.update_attrs(class='button', id = 'update_dropdown')}}
             <!-- <select class="button-4" name="update_attribute" id="update_dropdown">
                 <option value="product">Price</option>
                 <option value="review">Brand</option>
@@ -256,11 +256,11 @@
             </select> -->
             <div class='inline-text' style="display: inline;"> = </div>
             <div style="display: inline;">
-                <input class="button-4" type="number" id="update_const" name="update_const" size="4"
+                <input class="button" type="number" id="update_const" name="update_const" size="4"
                 style="width: 100px;" value='1.1'>
             </div>
             <div style="display: inline;">
-                {{ form.update_sign(class='button-4',id='update_dropdown')}}
+                {{ form.update_sign(class='button',id='update_dropdown')}}
                 <!-- <select class="button-4"  name="update_attribute" id="update_dropdown">
                     <option value="product">x</option>
                     <option value="review">+</option>
@@ -268,7 +268,7 @@
                 </select> -->
             </div>
             <div style="display: inline;">
-                <input class="button-4" type="text" id="update_attr2" name="update_attr2" value=" PRE(Price)" disabled
+                <input class="button" type="text" id="update_attr2" name="update_attr2" value=" PRE(Price)" disabled
                 style="background-color: rgba(216, 216, 216, 0.548); width: 120px">
             </div>
         </div>
@@ -276,7 +276,7 @@
         <div>
         </div>
         <div>
-            <button class="button-4" role="button">+ WHEN</button>
+            <button class="button-4" role="button" style = "background-color: rgba(27, 31, 35, 0.15)">+ WHEN</button>
         </div>
         <div class="span-col-4">
             <div id="editor_WHEN"></div>
@@ -299,14 +299,15 @@
         </div>
         
         <div style="display: inline; float: right; margin-top: 10px;">
-            <button class="button-4" name = 'run' role="button" style="background-color: rgb(104, 213, 80);">RUN</button>
+            <button class="button-4" name = 'run' role="button" style="background-color: rgba(27, 31, 35, 0.15);">RUN</button>
         </div>
         
     </div>
 
     <!-- OUTPUT GRID MIDDLE RIGHT -->
     <div class="output_grid">
-        <div>
+
+        <!-- <div>
             {%- if final_run -%}
             <div id="bar-out-1">
                 <img id="bar1" src="/static/bar_graph1.jpg" style="
@@ -326,10 +327,10 @@
                 object-fit: contain;">
             </div>
             {%- endif %}
-        </div>
+        </div> -->
 
         <div>
-            {%- if default_plot -%}
+            
             <div id="bar-out-2">
                 <img id="bar" src="/static/bar_graph.jpg" style="
                 width: 400px;
@@ -340,7 +341,7 @@
                 Aggregate Query View
             
             </div>
-            {%- endif %}
+            
         </div>
 
         <div>
